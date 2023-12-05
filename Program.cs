@@ -1,6 +1,9 @@
-﻿using System;
+﻿﻿using System;
 
 
+
+//refactored to match Sarahs code
+//this is a mix between the original repo and sarahs optimizations
 
 Main();
 
@@ -15,71 +18,20 @@ void Main()
     MooseSays("I really am enthusiastic");
 
     // As a question
-    CanadaQuestion();
-    EnthusiasticQuestion();
-    LoveCSharpQuestion();
-    SecretQuestion();
+ AskQuestion("Is Canada real?", "Really? It seems very unlikely.", "I  K N E W  I T !!!");
+ AskQuestion("Are you enthuastic?", "Yay!", "You should try it!");
+ AskQuestion("Do you love C# yet?", "Good job sucking up to your instructor!", "You will...oh, yes, you will...");
+ AskQuestion("Do you want to know a secret?", "ME TOO!!!! I love secrets...tell me one!", "Oh, no...secrets are the best, I love to share them!");
 }
 
-// Ask a question
-CanadaQuestion();
-
-void CanadaQuestion() {
-bool isTrue = MooseAsks("Is Canada real?");
-    if (isTrue)
-    {
-        MooseSays("Really? It seems very unlikely.");
-    }
-    else
-    {
-        MooseSays("I  K N E W  I T !!!");
-    }
-}
-
-
-void EnthusiasticQuestion()
+void AskQuestion (string question, string yesResponse, string noResponse) //we're passing 3 strings into our function upon exectuion
 {
-    bool isEnthusiastic = MooseAsks("Are you enthusiastic?");
-    if (isEnthusiastic)
-    {
-        MooseSays("Yay!");
-    }
-    else
-    {
-        MooseSays("You should try it!");
-    }
+    bool isTrue = MooseAsks(question);
+
+    string response = isTrue ? yesResponse : noResponse ;
+
+    MooseSays(response);
 }
-
-void LoveCSharpQuestion()
-{
-    bool doesLoveCSharp = MooseAsks("Do you love C# yet?");
-    if (doesLoveCSharp)
-    {
-        MooseSays("Good job sucking up to your instructor!");
-    }
-    else
-    {
-        MooseSays("You will...oh, yes, you will...");
-    }
-}
-
-void SecretQuestion()
-{
-    bool wantsSecret = MooseAsks("Do you want to know a secret?");
-    if (wantsSecret)
-    {
-        MooseSays("ME TOO!!!! I love secrets...tell me one!");
-    }
-    else
-    {
-        MooseSays("Oh, no...secrets are the best, I love to share them!");
-    }
-}
-
-
-
-
-
 
 void MooseSays(string message)
 {
@@ -113,9 +65,10 @@ void MooseSays(string message)
     ");
 }
 
-
+//must return true or false - asking for a string when executing function
 bool MooseAsks(string question)
 {
+    //this is where user inputs string from the console
     Console.Write($"{question} (Y/N): ");
     string answer = Console.ReadLine().ToLower();
 
